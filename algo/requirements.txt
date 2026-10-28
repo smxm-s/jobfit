@@ -1,0 +1,10 @@
+# JobFit 算法服务依赖（python 3.11）
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+pydantic==2.10.4
+python-multipart==0.0.20
+pymupdf==1.24.14
+python-docx==1.1.2
+numpy==1.26.4
+# 可选：仅在需要真实向量时安装（体积较大，按需在镜像中追加）
+# sentence-transformers==3.3.1

@@ -1,0 +1,67 @@
+# JobFit 应用层编排
+# 复用服务器已有 mysql80(3307) / redis608(6380) / minio(9000)
+# 启动：cd /opt/jobfit/deploy && docker compose up -d
+
+services:
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: jobfit-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ../frontend/dist:/usr/share/nginx/html:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ../extension/dist:/usr/share/nginx/extension:ro
+      - ./data/nginx/logs:/var/log/nginx
+    environment:
+      TZ: Asia/Shanghai
+    depends_on:
+      - backend
+
+  algo:
+    build:
+      context: ../algo
+      dockerfile: Dockerfile
+    image: jobfit/algo:0.1.0
+    container_name: jobfit-algo
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:18001:8000"
+    environment:
+      TZ: Asia/Shanghai
+      LLM_ENABLED: "false"
+      EMBEDDING_ENABLED: "false"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile.runtime
+    image: jobfit/backend:0.1.0
+    container_name: jobfit-backend
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+      SPRING_PROFILES_ACTIVE: prod
+      MYSQL_HOST: host.docker.internal
+      MYSQL_PORT: "3307"
+      MYSQL_DB: jobfit
+      MYSQL_USER: jobfit
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      REDIS_HOST: host.docker.internal
+      REDIS_PORT: "6380"
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      MINIO_ENDPOINT: http://host.docker.internal:9000
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
+      MINIO_BUCKET_RESUME: jobfit-resume
+      MINIO_BUCKET_EXPORT: jobfit-export
+      ALGO_BASE_URL: http://jobfit-algo:8000
+      AGENT_TOKEN_TTL_DAYS: "90"
+      APPLY_DAILY_LIMIT_DEFAULT: "30"
+    depends_on:
+      - algo
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

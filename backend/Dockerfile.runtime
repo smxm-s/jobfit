@@ -1,0 +1,11 @@
+# 运行镜像：jar 在本地打好后一起上传，服务器上不再跑 Maven
+FROM eclipse-temurin:17-jre
+
+WORKDIR /app
+ENV TZ=Asia/Shanghai \
+    JAVA_OPTS="-Xms256m -Xmx512m"
+
+COPY target/*.jar app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar /app/app.jar"]

@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "JobFit 求职助手",
+  "version": "0.1.0",
+  "description": "在 Boss 直聘列表页采集岗位、展示 JobFit 匹配分数，并支持 L2 确认 / L3 限频的半自动投递。登录态只留在本机，不读取、不上传 Cookie。",
+  "minimum_chrome_version": "110",
+  "permissions": ["storage", "alarms"],
+  "host_permissions": ["https://www.zhipin.com/*", "http://localhost:5173/*"],
+  "background": {
+    "service_worker": "dist/background/index.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "JobFit 求职助手",
+    "default_popup": "src/popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.zhipin.com/*"],
+      "js": ["dist/content/boot.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["dist/content/*.js", "dist/shared/*.js", "selectors.json"],
+      "matches": ["https://www.zhipin.com/*"]
+    }
+  ]
+}

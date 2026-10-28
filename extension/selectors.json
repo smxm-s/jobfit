@@ -1,0 +1,102 @@
+{
+  "_comment": "选择器集中在服务端可下发的配置里。每项是候选数组，按顺序取第一个命中的元素；页面结构变化时只改这里。带 __PLACEHOLDER__ 注释的条目是骨架默认值，需要在真实页面校准。",
+  "version": 1,
+  "list": {
+    "container": [".job-list-box", ".job-list-container", ".search-job-result", ".job-list"],
+    "card": ["li.job-card-wrapper", ".job-card-wrapper", ".job-card-box"],
+    "link": ["a.job-card-left", "a[href*='/job_detail/']"],
+    "title": [".job-card-left .job-name", ".job-title .job-name", ".job-name", ".job-title"],
+    "company": [".job-card-right .company-name", ".company-name", ".company-info .company-name"],
+    "city": [".job-card-left .job-area", ".job-area-wrapper", ".job-area"],
+    "salary": [".job-card-left .salary", ".job-card-right .salary", ".salary"],
+    "exp": [".job-card-left .job-exp", ".job-exp"],
+    "degree": [".job-card-left .job-degree", ".job-degree"],
+    "tags": [".job-card-left .tag-list li", ".job-card-right .tag-list li", ".tag-list li", ".job-tags span"],
+    "jdSummary": [".job-card-footer .info-desc", ".job-card-body .job-desc", ".job-desc", ".job-card-footer"],
+    "footer": [".job-card-footer", ".job-card-body"],
+    "nextPage": [".options-pages a:last-child", ".pagination .next", "a.next"],
+    "emptyHint": [".job-list-box .empty", ".empty-wrapper", ".ui-empty"]
+  },
+  "login": {
+    "loggedIn": [".nav-figure", ".user-nav .nav-figure", ".header-user", ".header-login-status.is-login"],
+    "loginEntry": [".header-login", ".nav-login", ".login-btn", ".header-login-btn"],
+    "loginDialog": [".boss-login-dialog", ".login-dialog", ".dialog-login"]
+  },
+  "captcha": {
+    "container": [
+      ".geetest_panel",
+      ".geetest_box",
+      "#captcha",
+      ".verify-wrap",
+      ".captcha-wrap",
+      ".dialog-verify",
+      ".boss-popup__wrapper .verify"
+    ],
+    "textHints": ["请完成验证", "安全验证", "滑动验证", "拖动滑块", "验证码", "访问过于频繁"]
+  },
+  "detail": {
+    "jd": [
+      ".job-sec-text",
+      ".job-detail-section .job-sec-text",
+      ".detail-content .job-sec-text",
+      ".job-detail .text"
+    ],
+    "title": [".job-banner .name h1", ".job-primary .name h1", "h1"],
+    "company": [".job-banner .company-info a", ".job-primary .company-info a", ".company-info .company-name"],
+    "salary": [".job-banner .salary", ".job-primary .salary", ".salary"],
+    "city": [".job-banner .text-city", ".job-primary .text-city", ".job-area"],
+    "tags": [".job-banner .tag-list li", ".job-primary .tag-list li", ".tag-list li"],
+    "applyButton": [".btn-startchat", "a.btn-startchat", ".op-btn-chat", "button.btn-startchat"],
+    "alreadyApplied": [".btn-startchat.disabled", ".already-apply", ".btn-continue-chat"],
+    "chatDialog": [".dialog-container", ".chat-dialog", ".boss-chat", ".chat-content"],
+    "greetingInput": [
+      ".chat-input",
+      "#chat-input",
+      "textarea.chat-input",
+      ".dialog-container textarea",
+      "div[contenteditable='true']"
+    ],
+    "sendButton": [".btn-send", ".send-message", "button[type='submit']", ".chat-op .btn-sure"],
+    "sentHint": [".chat-message", ".message-item", ".dialog-title"]
+  },
+  "search": {
+    "base": "https://www.zhipin.com/web/geek/job",
+    "cityCodes": {
+      "北京": "101010100",
+      "上海": "020000",
+      "广州": "101280100",
+      "深圳": "101280600",
+      "杭州": "101210100",
+      "成都": "101270100",
+      "南京": "101190100",
+      "武汉": "101200100",
+      "西安": "101110100",
+      "苏州": "101190400",
+      "天津": "101030100",
+      "重庆": "101040100",
+      "长沙": "101250100",
+      "郑州": "101180100",
+      "合肥": "101220100",
+      "厦门": "101230200"
+    },
+    "expCodes": {
+      "在校": "101",
+      "应届": "101",
+      "应届生": "101",
+      "经验不限": "0",
+      "1年以内": "102",
+      "1-3年": "103",
+      "3-5年": "104",
+      "5-10年": "105",
+      "5年以上": "105",
+      "10年以上": "106"
+    },
+    "degreeCodes": {
+      "学历不限": "0",
+      "大专": "202",
+      "本科": "203",
+      "硕士": "204",
+      "博士": "205"
+    }
+  }
+}

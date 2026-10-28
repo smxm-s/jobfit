@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JobFit</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="head">
+      <div class="brand">
+        <span class="dot" id="connDot"></span>
+        <span class="name">JobFit</span>
+        <span class="tag" id="connTag">未连接</span>
+      </div>
+      <button id="refreshBtn" class="icon-btn" type="button" title="刷新状态">刷新</button>
+    </header>
+
+    <div id="error" class="banner error hidden"></div>
+    <div id="notice" class="banner warn hidden"></div>
+
+    <section id="pairSection" class="card hidden">
+      <h2>配对设备</h2>
+      <p class="hint">在平台「岗位筛选」页生成配对码，10 分钟内有效。插件只保存设备 token，不保存账号密码。</p>
+      <form id="pairForm" class="pair-row">
+        <input
+          id="pairCode"
+          type="text"
+          maxlength="12"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="6-10 位配对码，如 7K3D-9QX2"
+        />
+        <button id="pairBtn" class="primary" type="submit">配对</button>
+      </form>
+      <p id="pairTip" class="tiny" hidden></p>
+    </section>
+
+    <section id="mainSection" class="hidden">
+      <div class="card">
+        <div class="kv"><span>连接状态</span><b id="connText">—</b></div>
+        <div class="kv"><span>今日额度</span><b id="quotaText">—</b></div>
+        <div class="bar"><i id="quotaBar"></i></div>
+        <div class="kv"><span>投递队列</span><b id="queueText">—</b></div>
+        <div class="kv"><span>投递等级</span><b id="levelText">—</b></div>
+        <div class="kv"><span>简历版本</span><b id="versionText">—</b></div>
+      </div>
+
+      <div class="card">
+        <div class="kv"><span>Boss 登录</span><b id="loginText">未检测</b></div>
+        <div class="kv"><span>最近心跳</span><b id="heartbeatText">—</b></div>
+        <div class="kv"><span>服务地址</span><b id="apiBaseText" class="mono">—</b></div>
+      </div>
+
+      <div class="card">
+        <label class="switch">
+          <input id="l3Toggle" type="checkbox" />
+          <span>允许 L3 自动投递（实验特性，默认关闭）</span>
+        </label>
+        <p id="l3Hint" class="hint"></p>
+      </div>
+
+      <div class="actions">
+        <button id="pauseBtn" type="button">暂停队列</button>
+        <button id="openBossBtn" class="primary" type="button">打开 Boss 列表</button>
+      </div>
+      <div class="actions">
+        <button id="openWebBtn" type="button">筛选配置</button>
+      </div>
+    </section>
+
+    <footer class="foot">Cookie 不出本机 · 不读取、不上传</footer>
+
+    <script type="module" src="../../dist/popup/popup.js"></script>
+  </body>
+</html>

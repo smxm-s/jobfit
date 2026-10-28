@@ -1,0 +1,21 @@
+# secrets
+deploy/.env
+.env
+*.local
+
+# build output
+frontend/dist/
+frontend/node_modules/
+extension/dist/
+extension/node_modules/
+backend/target/
+algo/__pycache__/
+algo/**/__pycache__/
+
+# logs & runtime
+deploy/data/
+*.log
+
+# ide
+.idea/
+.vscode/
